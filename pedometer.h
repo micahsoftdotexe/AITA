@@ -7,7 +7,7 @@
 #include <avr/iom4809.h>
 #endif
 #include <stdio.h>
-#include <imu.h>
+#include "imu.h"
 //#include <sio.h>
 //#include <imu.h>
 // #define SS_AVR_LOW      PORTB.OUTCLR = PIN3_bm;
@@ -20,9 +20,11 @@
 class pedometer{
     private:
         int stepstaken;
+        imu pedometerimu;
         //static pedometer *instance;
         void en_it();
         void de_it();
+        void resetsteps();
         //void setuppedometer();
     public:
         static pedometer *instance;
@@ -30,7 +32,9 @@ class pedometer{
         pedometer();
         imu setup();
         void setup(imu imuinstance);
-        int wait_for_steps(int numsetps);
+        char wait_for_steps(char numsetps);
+        char timedsteps(char numsteps, int numms);
+        char checksteps();
         
 
 };

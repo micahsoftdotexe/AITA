@@ -8,19 +8,16 @@
 #include <avr/iom4809.h>
 #endif
 #include <stdio.h>
-#include <pedometer.h>
-#include <sio.h>
-//#include <imu.h>
+#include "pedometer.h"
+#include "sio.h"
+//#include "imu.h"
 
 
 int main(){
     sio::setup();
+    char steps;
     pedometer ped = pedometer();
     imu newimu = ped.setup();
     sio::Println("Setup Complete");
-    // while(1){
-    //sio::Println("inside loop");
-    ped.wait_for_steps(5);
-    sio::Println("Taken 5 steps");
-    //}
+    ped.timedsteps(6,1000); //at least 4 steps or above
 }

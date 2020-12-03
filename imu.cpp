@@ -8,7 +8,7 @@
 #endif
 #include <stdio.h>
 #include <sio.h>
-#include <imu.h>
+#include "imu.h"
 #define SS_AVR_LOW      PORTB.OUTCLR = PIN3_bm;
 #define SS_AVR_HIGH     PORTB.OUTSET = PIN3_bm;
 #define BAUD_RATE 9600
