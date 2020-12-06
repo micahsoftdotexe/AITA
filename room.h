@@ -18,15 +18,15 @@ class room{
         char instructiontext[256];
         char exittype;
         char exitquantity;
-        char timeinms;
+        int timeinms;
         char goodpathid;
         char badpathid;
-        char exit(char result);
     public:
         //creates simple room
         room(char id,char *text,char *insttext);
-        void perameters(char et, char eq = -1);
-        void timedperameters(char et, char tims, char eq = -1);
+        char exit(char result);
+        void perameters(char et, char eq);
+        void timedperameters(char et, char tims, char eq);
         void addgoodpath(char goodid);
         void addbadpath(char badid);
         char enter();

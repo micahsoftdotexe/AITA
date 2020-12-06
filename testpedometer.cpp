@@ -19,5 +19,10 @@ int main(){
     pedometer ped = pedometer();
     imu newimu = ped.setup();
     sio::Println("Setup Complete");
-    ped.timedsteps(6,1000); //at least 4 steps or above
+    if(ped.timedsteps(6,5000) == 0){
+        sio::Println("made it!");
+    } //at least 4 steps or above
+    else{
+        sio::Println("did not make it");
+    }
 }

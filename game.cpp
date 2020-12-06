@@ -9,3 +9,59 @@
 #include <avr/iom4809.h>
 #endif
 #include <stdio.h>
+#include "game.h"
+#include "sio.h"
+//#include "room.h"
+
+game::game():startroom(0),lastroom(0){};
+char game::addroom(char *text,char *insttext, char exitype, char eq){
+    rooms[lastroom] = new room(lastroom, text, insttext);
+    rooms[lastroom] -> perameters(exitype, eq);
+    char rv = lastroom;
+    lastroom++;
+    return rv;
+
+}
+char game::addtimedroom(char *text,char *insttext, char exitype,char tims, char eq){
+    rooms[lastroom] = new room(lastroom, text, insttext);
+    rooms[lastroom] -> timedperameters(exitype,tims,eq);
+    char rv = lastroom;
+    lastroom++;
+    return rv;
+}
+void game::linkroomgood(char roomlinked, char r2l){
+    rooms[roomlinked] -> addgoodpath(r2l);
+}
+void game::linkroombad(char roomlinked, char r2l){
+    rooms[roomlinked] -> addbadpath(r2l);
+}
+void game::startgame(){
+    sio::setup();
+    char buffer[64];
+    for(int countdown = 3; countdown > 0; countdown--){
+        sprintf(buffer, "Game is starting in: %d", countdown);
+        sio::Println(buffer);
+    }
+    emergencystop = 0;
+    char regstop = 0;
+    char nextroom = startroom;
+    char checkenterstatus;
+    while(emergencystop == 0 && regstop == 0){
+        checkenterstatus = rooms[nextroom] -> enter();
+        if(checkenterstatus == -1){
+            emergencystop = 1;
+            sprintf(buffer, "room %c not set up correctly", nextroom);
+            sio::Println(buffer);
+
+        }
+        else{
+            nextroom = rooms[nextroom] -> exit(checkenterstatus);
+            if(nextroom == -1){
+                regstop = 1;
+                sio::Println("The end!");
+            }
+        }
+    }
+}
+
+

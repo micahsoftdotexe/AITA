@@ -64,7 +64,7 @@ void pedometer::interrupt_handler(){
 
 ISR(PORTC_PORT_vect){
     PORTC_INTFLAGS = 0xFF;
-    sio::Println("[LOG] inside ISR");
+    //sio::Println("[LOG] inside ISR");
     pedometer::instance -> interrupt_handler();
     //_delay_ms(10);
 
@@ -94,13 +94,21 @@ char pedometer::checksteps(){
     }
     else{
         return (answer -7)+4;
+    }   
+}
+void mscounter(int numms){
+    while(numms != 0){
+        _delay_ms(1);
+        numms--;
     }
 }
 char pedometer::timedsteps(char numsteps,int numms){
     resetsteps();
     //int intnums =  (int)numms;
-    _delay_ms(numms);
-    if(checksteps() > numsteps){
+    _delay_ms(10);
+    mscounter(numms);
+    //sio::Println("Made it after mscounter");
+    if(checksteps() >= numsteps){
         return 0; //zero good
     }
     else{

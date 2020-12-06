@@ -12,13 +12,13 @@
 #include "room.h"
 #include <string.h>
 #include "pedometer.h"
+#include "sio.h"
 // #include <iterator>
 // #include <vector>
-
-room::room(char id,char *text,char *insttext):id(id),goodpathid(-1),badpathid(-1){
+room::room(char id,char *text,char *insttext):id(id),goodpathid(-1),badpathid(-1),timeinms(-1){
     strncpy(roomtext, text,256);
     strncpy(instructiontext,insttext,256);
- }
+}
 char room::exit(char result){
     if(result ==0){
         return goodpathid;
@@ -28,11 +28,11 @@ char room::exit(char result){
     }
 }
 
-void room::perameters(char et, char eq = -1){
+void room::perameters(char et, char eq){
     exittype = et;
     exitquantity = eq;
 }
-void room::timedperameters(char et, char tims, char eq = -1){
+void room::timedperameters(char et, char tims, char eq){
     exittype = et;
     timeinms = tims;
     exitquantity = eq;
@@ -44,6 +44,8 @@ void room::addbadpath(char badid){
     badpathid = badid;
 }
 char room::enter(){
+    sio::Println(roomtext);
+    sio::Println(instructiontext);
     if(exittype == WAITONSTEPS){ //untimed pedometer
         pedometer ped = pedometer();
         imu newimu = ped.setup();
@@ -53,9 +55,12 @@ char room::enter(){
         ped.wait_for_steps(exitquantity);
         return 0;
     }
-    else if(exittype == TIMEDWAITONSTEPS){
+    else if(exittype == TIMEDWAITONSTEPS){ //timed pedometer
         pedometer ped = pedometer();
         imu newimu = ped.setup();
-        ped.timedsteps(exitquantity,timeinms);
+        if(exitquantity == -1 || timeinms == -1){
+            return -1;
+        }
+        return ped.timedsteps(exitquantity,timeinms);
     }
 }
