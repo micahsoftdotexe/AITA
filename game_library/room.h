@@ -23,10 +23,10 @@ class room{
         char badpathid;
     public:
         //creates simple room
-        room(char id,char *text,char *insttext);
+        room(const char id,const char *text,const char *insttext);
         char exit(char result);
         void perameters(char et, char eq);
-        void timedperameters(char et, char tims, char eq);
+        void timedperameters(char et, int tims, char eq);
         void addgoodpath(char goodid);
         void addbadpath(char badid);
         char enter();

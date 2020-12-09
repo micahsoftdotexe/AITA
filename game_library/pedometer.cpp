@@ -36,6 +36,8 @@ imu pedometer::setup(){
     _delay_ms(10);
     pedometerimu.SPI_write(0x0D,0x80);
     _delay_ms(10);
+    pedometerimu.SPI_write(0x0F,0x80); //set up 4g mode
+    _delay_ms(10);
     pedometerimu.SPI_write(0x14,0x01);
 
     return pedometerimu;

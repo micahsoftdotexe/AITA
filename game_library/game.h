@@ -20,8 +20,8 @@ class game{
     public:
         game();
         char numofrooms();
-        char addroom(char *text,char *insttext, char exitype,char eq = -1);
-        char addtimedroom(char *text,char *insttext, char exitype,char tims, char eq = -1);
+        char addroom(const char *text,const char *insttext,char exitype,char eq = -1);
+        char addtimedroom(const char *text,const char *insttext, char exitype,int tims, char eq = -1);
         void linkroomgood(char roomlinked, char r2l);
         void linkroombad(char roomlinked, char r2l);
         void startgame();

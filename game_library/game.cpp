@@ -11,18 +11,28 @@
 #include <stdio.h>
 #include "game.h"
 #include "sio.h"
+//#include "avr-stl/pnew.cpp"
 //#include "room.h"
+void * operator new(size_t size)
+{
+  return malloc(size);
+}
+
+void operator delete(void * ptr)
+{
+  free(ptr);
+}
 
 game::game():startroom(0),lastroom(0){};
-char game::addroom(char *text,char *insttext, char exitype, char eq){
-    rooms[lastroom] = new room(lastroom, text, insttext);
+char game::addroom(const char *text,const char *insttext, char exitype, char eq){
+    rooms[lastroom] = new room(lastroom, text, insttext); //make const char
     rooms[lastroom] -> perameters(exitype, eq);
     char rv = lastroom;
     lastroom++;
     return rv;
 
 }
-char game::addtimedroom(char *text,char *insttext, char exitype,char tims, char eq){
+char game::addtimedroom(const char *text,const char *insttext, char exitype,int tims, char eq){
     rooms[lastroom] = new room(lastroom, text, insttext);
     rooms[lastroom] -> timedperameters(exitype,tims,eq);
     char rv = lastroom;
@@ -41,6 +51,7 @@ void game::startgame(){
     for(int countdown = 3; countdown > 0; countdown--){
         sprintf(buffer, "Game is starting in: %d", countdown);
         sio::Println(buffer);
+        _delay_ms(1000);
     }
     emergencystop = 0;
     char regstop = 0;

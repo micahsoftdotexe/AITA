@@ -15,8 +15,8 @@ game creategame(){
     // in a certain amount of miliseconds. More ways will be implemented later but this should help you understand how to make a simple text adventure 
     //game based on those two systems
     game ng = game(); // creates a new game object
-    char pl = ng.addroom("You come into the mouth of the dungeon", "You see a door away steps away", WAITONSTEPS,10);
-    char pn = ng.addtimedroom("Oh no there is a dragon in this room", "There is another door 10 steps away! RUN!", TIMEDWAITONSTEPS,2000,10);
+    char pl = ng.addroom("You come into the mouth of the dungeon", "You see a door 10 steps away", WAITONSTEPS,10);
+    char pn = ng.addtimedroom("Oh no there is a dragon in this room", "There is another door 10 steps away! RUN!", TIMEDWAITONSTEPS,5000,10);
     ng.linkroomgood(pl,pn);
     pl = ng.addroom("You run through the door and notice a pile of jewels", "The jewels are 11 steps away", WAITONSTEPS, 11);
     ng.linkroomgood(pn,pl);
@@ -29,7 +29,6 @@ game creategame(){
 
 
 int main(){
-    game newgame = game();
-    newgame = creategame();
+    game newgame = creategame();
     newgame.startgame();
 }

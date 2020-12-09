@@ -15,7 +15,7 @@
 #include "sio.h"
 // #include <iterator>
 // #include <vector>
-room::room(char id,char *text,char *insttext):id(id),goodpathid(-1),badpathid(-1),timeinms(-1){
+room::room(const char id,const char *text,const char *insttext):id(id),goodpathid(-1),badpathid(-1),timeinms(-1){
     strncpy(roomtext, text,256);
     strncpy(instructiontext,insttext,256);
 }
@@ -32,7 +32,7 @@ void room::perameters(char et, char eq){
     exittype = et;
     exitquantity = eq;
 }
-void room::timedperameters(char et, char tims, char eq){
+void room::timedperameters(char et, int tims, char eq){
     exittype = et;
     timeinms = tims;
     exitquantity = eq;
