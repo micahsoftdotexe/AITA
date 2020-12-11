@@ -1,0 +1,245 @@
+<!-- Version 2.20 -->
+<!-- Generated 12/08/2020 GMT -->
+
+<!--
+ Copyright © 2020, Microchip Technology Inc. and its subsidiaries ("Microchip")
+ All rights reserved.
+ 
+ This software is developed by Microchip Technology Inc. and its subsidiaries ("Microchip").
+ 
+ Redistribution and use in source and binary forms, with or without modification, are
+ permitted provided that the following conditions are met:
+ 
+     1. Redistributions of source code must retain the above copyright notice, this list of
+        conditions and the following disclaimer.
+ 
+     2. Redistributions in binary form must reproduce the above copyright notice, this list
+        of conditions and the following disclaimer in the documentation and/or other
+        materials provided with the distribution. Publication is not required when
+        this file is used in an embedded application.
+ 
+     3. Microchip's name may not be used to endorse or promote products derived from this
+        software without specific prior written permission.
+ 
+ THIS SOFTWARE IS PROVIDED BY MICROCHIP "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+ INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+ PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL MICROCHIP BE LIABLE FOR ANY DIRECT, INDIRECT,
+ INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING BUT NOT LIMITED TO
+ PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA OR PROFITS; OR BUSINESS
+ INTERRUPTION) HOWSOEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+ THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<HTML>
+<HEAD>
+<TITLE>Microchip MPLAB XC8 C Compiler: ATMEGA406 Support Information</TITLE>
+</HEAD>
+<BODY>
+<h2>ATMEGA406 Support Information</h2>
+<h3>#pragma config Usage</h3>
+<table bgcolor="lightgray" width="100%" cellpadding="10">
+<tbody>
+<th colspan="1">
+<div align="left"><tt>#pragma config &lt;setting&gt;=&lt;named value&gt;</tt></div>
+</th>
+<tr bgcolor="white">
+<td>For example:<br/><code>// Clock Selection : Start-up time: 14 CK + 62.5 ms<br/>// Boot Reset vector Enabled : CLEAR<br/>// Select boot size : Boot Flash size=2048 words Boot address=$4800<br/>// Preserve EEPROM through the Chip Erase cycle : CLEAR<br/>// Watchdog timer always on : CLEAR<br/>#pragma config SUT_CKSEL = SUT_CKSEL_14CK_62MS5, BOOTRST = CLEAR, BOOTSZ = BOOTSZ_2048W_4800, EESAVE = CLEAR, WDTON = CLEAR</code></td>
+</tr>
+</tbody></table>
+<table bgcolor="lightgray" width="100%" cellpadding="10">
+<tbody>
+<th colspan="1">
+<div align="left"><tt>#pragma config &lt;setting&gt;=&lt;literal constant&gt;</tt></div>
+</th>
+<tr bgcolor="white">
+<td>For example:<br/><code>// Clock Selection : Start-up time: 14 CK + 62.5 ms<br/>// Boot Reset vector Enabled : CLEAR<br/>// Select boot size : Boot Flash size=2048 words Boot address=$4800<br/>// Preserve EEPROM through the Chip Erase cycle : CLEAR<br/>// Watchdog timer always on : CLEAR<br/>#pragma config SUT_CKSEL = 0x5, BOOTRST = 0x1, BOOTSZ = 0x0, EESAVE = 0x1, WDTON = 0x1</code></td>
+</tr>
+</tbody></table>
+<br/>
+<h3>#pragma config Settings</h3>
+<table bgcolor="lightgray" width="100%" cellpadding="2">
+<tbody>
+<th colspan="2">
+<div align="left">Register: LOW</div>
+</th>
+<tr bgcolor="white">
+<td width="20%"><b><tt>SUT_CKSEL</tt></b></td>
+<td><b>Clock Selection</b></td>
+</tr>
+<tr bgcolor="white">
+<td width="20%"><tt>SUT_CKSEL_14CK_0MS</tt></td>
+<td>Start-up time: 14 CK + 0 ms</td>
+</tr>
+<tr bgcolor="white">
+<td width="20%"><tt>SUT_CKSEL_14CK_3MS9</tt></td>
+<td>Start-up time: 14 CK + 3.9 ms</td>
+</tr>
+<tr bgcolor="white">
+<td width="20%"><tt>SUT_CKSEL_14CK_62MS5</tt></td>
+<td>Start-up time: 14 CK + 62.5 ms</td>
+</tr>
+<tr bgcolor="white">
+<td width="20%"><tt>SUT_CKSEL_14CK_0MS</tt></td>
+<td>Start-up time: 14 CK + 0 ms</td>
+</tr>
+<tr bgcolor="white">
+<td width="20%"><tt>SUT_CKSEL_14CK_3MS9</tt></td>
+<td>Start-up time: 14 CK + 3.9 ms</td>
+</tr>
+<tr bgcolor="white">
+<td width="20%"><tt>SUT_CKSEL_14CK_62MS5</tt></td>
+<td>Start-up time: 14 CK + 62.5 ms</td>
+</tr>
+<tr bgcolor="white">
+<td width="20%"><b><tt>BOOTRST</tt></b></td>
+<td><b>Boot Reset vector Enabled</b></td>
+</tr>
+<tr bgcolor="white">
+<td width="20%"><tt>SET</tt></td>
+<td></td>
+</tr>
+<tr bgcolor="white">
+<td width="20%"><tt>CLEAR</tt></td>
+<td></td>
+</tr>
+<tr bgcolor="white">
+<td width="20%"><b><tt>BOOTSZ</tt></b></td>
+<td><b>Select boot size</b></td>
+</tr>
+<tr bgcolor="white">
+<td width="20%"><tt>BOOTSZ_256W_4F00</tt></td>
+<td>Boot Flash size=256 words Boot address=$4F00</td>
+</tr>
+<tr bgcolor="white">
+<td width="20%"><tt>BOOTSZ_512W_4E00</tt></td>
+<td>Boot Flash size=512 words Boot address=$4E00</td>
+</tr>
+<tr bgcolor="white">
+<td width="20%"><tt>BOOTSZ_1024W_4C00</tt></td>
+<td>Boot Flash size=1024 words Boot address=$4C00</td>
+</tr>
+<tr bgcolor="white">
+<td width="20%"><tt>BOOTSZ_2048W_4800</tt></td>
+<td>Boot Flash size=2048 words Boot address=$4800</td>
+</tr>
+<tr bgcolor="white">
+<td width="20%"><b><tt>EESAVE</tt></b></td>
+<td><b>Preserve EEPROM through the Chip Erase cycle</b></td>
+</tr>
+<tr bgcolor="white">
+<td width="20%"><tt>SET</tt></td>
+<td></td>
+</tr>
+<tr bgcolor="white">
+<td width="20%"><tt>CLEAR</tt></td>
+<td></td>
+</tr>
+<tr bgcolor="white">
+<td width="20%"><b><tt>WDTON</tt></b></td>
+<td><b>Watchdog timer always on</b></td>
+</tr>
+<tr bgcolor="white">
+<td width="20%"><tt>SET</tt></td>
+<td></td>
+</tr>
+<tr bgcolor="white">
+<td width="20%"><tt>CLEAR</tt></td>
+<td></td>
+</tr>
+</tbody></table>
+<table bgcolor="lightgray" width="100%" cellpadding="2">
+<tbody>
+<th colspan="2">
+<div align="left">Register: HIGH</div>
+</th>
+<tr bgcolor="white">
+<td width="20%"><b><tt>JTAGEN</tt></b></td>
+<td><b>JTAG Interface Enabled</b></td>
+</tr>
+<tr bgcolor="white">
+<td width="20%"><tt>SET</tt></td>
+<td></td>
+</tr>
+<tr bgcolor="white">
+<td width="20%"><tt>CLEAR</tt></td>
+<td></td>
+</tr>
+<tr bgcolor="white">
+<td width="20%"><b><tt>OCDEN</tt></b></td>
+<td><b>On-Chip Debug Enabled</b></td>
+</tr>
+<tr bgcolor="white">
+<td width="20%"><tt>SET</tt></td>
+<td></td>
+</tr>
+<tr bgcolor="white">
+<td width="20%"><tt>CLEAR</tt></td>
+<td></td>
+</tr>
+</tbody></table>
+<table bgcolor="lightgray" width="100%" cellpadding="2">
+<tbody>
+<th colspan="2">
+<div align="left">Register: LOCKBIT</div>
+</th>
+<tr bgcolor="white">
+<td width="20%"><b><tt>LB</tt></b></td>
+<td><b>Memory Lock</b></td>
+</tr>
+<tr bgcolor="white">
+<td width="20%"><tt>LB_PROG_VER_DISABLED</tt></td>
+<td>Further programming and verification disabled</td>
+</tr>
+<tr bgcolor="white">
+<td width="20%"><tt>LB_PROG_DISABLED</tt></td>
+<td>Further programming disabled</td>
+</tr>
+<tr bgcolor="white">
+<td width="20%"><tt>LB_NO_LOCK</tt></td>
+<td>No memory lock features enabled</td>
+</tr>
+<tr bgcolor="white">
+<td width="20%"><b><tt>BLB0</tt></b></td>
+<td><b>Boot Loader Protection Mode</b></td>
+</tr>
+<tr bgcolor="white">
+<td width="20%"><tt>BLB0_LPM_SPM_DISABLE</tt></td>
+<td>LPM and SPM prohibited in Application Section</td>
+</tr>
+<tr bgcolor="white">
+<td width="20%"><tt>BLB0_LPM_DISABLE</tt></td>
+<td>LPM prohibited in Application Section</td>
+</tr>
+<tr bgcolor="white">
+<td width="20%"><tt>BLB0_SPM_DISABLE</tt></td>
+<td>SPM prohibited in Application Section</td>
+</tr>
+<tr bgcolor="white">
+<td width="20%"><tt>BLB0_NO_LOCK</tt></td>
+<td>No lock on SPM and LPM in Application Section</td>
+</tr>
+<tr bgcolor="white">
+<td width="20%"><b><tt>BLB1</tt></b></td>
+<td><b>Boot Loader Protection Mode</b></td>
+</tr>
+<tr bgcolor="white">
+<td width="20%"><tt>BLB1_LPM_SPM_DISABLE</tt></td>
+<td>LPM and SPM prohibited in Boot Section</td>
+</tr>
+<tr bgcolor="white">
+<td width="20%"><tt>BLB1_LPM_DISABLE</tt></td>
+<td>LPM prohibited in Boot Section</td>
+</tr>
+<tr bgcolor="white">
+<td width="20%"><tt>BLB1_SPM_DISABLE</tt></td>
+<td>SPM prohibited in Boot Section</td>
+</tr>
+<tr bgcolor="white">
+<td width="20%"><tt>BLB1_NO_LOCK</tt></td>
+<td>No lock on SPM and LPM in Boot Section</td>
+</tr>
+</tbody></table>
+<br/>
+</BODY>
+</HTML>
