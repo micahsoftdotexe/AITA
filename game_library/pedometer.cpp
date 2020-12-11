@@ -59,7 +59,16 @@ void pedometer::de_it(){
 }
 void pedometer::interrupt_handler(){
     //char buffer[64];
-    stepstaken++;
+    // char buffer[64];
+    // sprintf(buffer, "%d steps taken",stepstaken);
+    // sio::Println(buffer);
+    _delay_ms(10);
+    if(stepstaken == 0){
+        stepstaken+=4;
+    }
+    else{
+        stepstaken++;
+    }
     //sprintf(buffer,"steps taken: %d",stepstaken);
     //sio::Println(buffer);
 }
@@ -74,6 +83,7 @@ ISR(PORTC_PORT_vect){
 
 char pedometer::wait_for_steps(char numsteps){
     en_it();
+    resetsteps();
     sei();
     //char buffer[64];
     //instance -> ISR();
@@ -85,9 +95,11 @@ char pedometer::wait_for_steps(char numsteps){
     cli();
     stepstaken = 0;
     de_it();
+    resetsteps();
     return 1;
 }
 char pedometer::checksteps(){
+    //resetsteps();
     char stepl = pedometerimu.SPI_read(0x4B);
     char steph = pedometerimu.SPI_read(0x4C);
     char answer = (steph << 8)| stepl;
@@ -105,6 +117,7 @@ void mscounter(int numms){
     }
 }
 char pedometer::timedsteps(char numsteps,int numms){
+    //sio::Println("reset steps");
     resetsteps();
     //int intnums =  (int)numms;
     _delay_ms(10);
@@ -116,6 +129,7 @@ char pedometer::timedsteps(char numsteps,int numms){
     else{
         return 1;
     }
+    resetsteps();
     
 
 }

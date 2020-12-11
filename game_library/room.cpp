@@ -56,11 +56,11 @@ char room::enter(){
         return 0;
     }
     else if(exittype == TIMEDWAITONSTEPS){ //timed pedometer
-        pedometer ped = pedometer();
-        imu newimu = ped.setup();
+        pedometer ped1 = pedometer();
+        imu newimu = ped1.setup();
         if(exitquantity == -1 || timeinms == -1){
             return -1;
         }
-        return ped.timedsteps(exitquantity,timeinms);
+        return ped1.timedsteps(exitquantity,timeinms);
     }
 }

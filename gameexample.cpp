@@ -7,7 +7,7 @@
 #include <avr/iom4809.h>
 #endif
 #include <stdio.h>
-#include "game.h"
+#include "game_library/game.h"
 //#include "sio.h"
 
 game creategame(){
@@ -16,7 +16,7 @@ game creategame(){
     //game based on those two systems
     game ng = game(); // creates a new game object
     char pl = ng.addroom("You come into the mouth of the dungeon", "You see a door 10 steps away", WAITONSTEPS,10);
-    char pn = ng.addtimedroom("Oh no there is a dragon in this room", "There is another door 10 steps away! RUN!", TIMEDWAITONSTEPS,5000,10);
+    char pn = ng.addtimedroom("Oh no there is a dragon in this room", "There is another door 10 steps away! RUN!", TIMEDWAITONSTEPS,7000,10);
     ng.linkroomgood(pl,pn);
     pl = ng.addroom("You run through the door and notice a pile of jewels", "The jewels are 11 steps away", WAITONSTEPS, 11);
     ng.linkroomgood(pn,pl);

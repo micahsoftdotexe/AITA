@@ -8,7 +8,7 @@
 #include <avr/iom4809.h>
 #endif
 #include <stdio.h>
-#include "pedometer.h"
+#include "game_library/pedometer.h"
 #include "sio.h"
 //#include "imu.h"
 
@@ -19,10 +19,10 @@ int main(){
     pedometer ped = pedometer();
     imu newimu = ped.setup();
     sio::Println("Setup Complete");
-    if(ped.timedsteps(6,5000) == 0){
-        sio::Println("made it!");
-    } //at least 4 steps or above
-    else{
-        sio::Println("did not make it");
-    }
+    ped.wait_for_steps(5);
+    sio::Println("5 steps");
+    pedometer ped1 = pedometer();
+    ped1.setup();
+    ped.wait_for_steps(6);
+    sio::Println("6 steps");
 }
