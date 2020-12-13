@@ -47,12 +47,15 @@ char room::enter(){
     sio::Println(roomtext);
     sio::Println(instructiontext);
     if(exittype == WAITONSTEPS){ //untimed pedometer
+        sio::Println("before make pedometer");
         pedometer ped = pedometer();
+        sio::Println("before ped setup");
         imu newimu = ped.setup();
         if(exitquantity == -1){
             return -1;
         }
         ped.wait_for_steps(exitquantity);
+        sio::Println("after wait steps");
         return 0;
     }
     else if(exittype == TIMEDWAITONSTEPS){ //timed pedometer

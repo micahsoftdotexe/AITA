@@ -62,6 +62,7 @@ void pedometer::interrupt_handler(){
     // char buffer[64];
     // sprintf(buffer, "%d steps taken",stepstaken);
     // sio::Println(buffer);
+    sio::Println("inside interrupt handler");
     _delay_ms(10);
     if(stepstaken == 0){
         stepstaken+=4;
@@ -75,7 +76,7 @@ void pedometer::interrupt_handler(){
 
 ISR(PORTC_PORT_vect){
     PORTC_INTFLAGS = 0xFF;
-    //sio::Println("[LOG] inside ISR");
+    sio::Println("[LOG] inside ISR");
     pedometer::instance -> interrupt_handler();
     //_delay_ms(10);
 
@@ -83,7 +84,9 @@ ISR(PORTC_PORT_vect){
 
 char pedometer::wait_for_steps(char numsteps){
     en_it();
+    sio::Println("after en_it");
     resetsteps();
+    sio::Println("after reset steps");
     sei();
     //char buffer[64];
     //instance -> ISR();
@@ -91,7 +94,9 @@ char pedometer::wait_for_steps(char numsteps){
         //sprintf(buffer, "[LOG] inside of wait for steps: %d", stepstaken);
         //sio::Println(buffer);
         _delay_ms(10);
+        sio::Println("inside while"); //gets to here
     }
+    sio::Println("after while");
     cli();
     stepstaken = 0;
     de_it();

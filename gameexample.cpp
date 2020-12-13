@@ -8,6 +8,7 @@
 #endif
 #include <stdio.h>
 #include "game_library/game.h"
+#include "game_library/sio.h"
 //#include "sio.h"
 
 game creategame(){
@@ -29,6 +30,9 @@ game creategame(){
 
 
 int main(){
+    sio::setup();
     game newgame = creategame();
+    sio::Println("after creategame");
+    _delay_ms(10);
     newgame.startgame();
 }
