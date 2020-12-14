@@ -10,7 +10,7 @@
 #endif
 #include <stdio.h>
 #include "game.h"
-#include "sio.h"
+#include "siob.h"
 //#include "avr-stl/pnew.cpp"
 //#include "room.h"
 void * operator new(size_t size)
@@ -46,13 +46,11 @@ void game::linkroombad(char roomlinked, char r2l){
     rooms[roomlinked] -> addbadpath(r2l);
 }
 void game::startgame(){
-    sio::setup();
+    siob::setup();
+    _delay_ms(5000);
+    siob::Println("Press any key to start");
     char buffer[64];
-    for(int countdown = 3; countdown > 0; countdown--){
-        sprintf(buffer, "Game is starting in: %d", countdown);
-        sio::Println(buffer);
-        _delay_ms(1000);
-    }
+    siob::Input(buffer,128);
     emergencystop = 0;
     char regstop = 0;
     char nextroom = startroom;
@@ -62,14 +60,14 @@ void game::startgame(){
         if(checkenterstatus == -1){
             emergencystop = 1;
             sprintf(buffer, "room %c not set up correctly", nextroom);
-            sio::Println(buffer);
+            siob::Println(buffer);
 
         }
         else{
             nextroom = rooms[nextroom] -> exit(checkenterstatus);
             if(nextroom == -1){
                 regstop = 1;
-                sio::Println("The end!");
+                siob::Println("The end!");
             }
         }
     }

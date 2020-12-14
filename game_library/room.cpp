@@ -12,7 +12,7 @@
 #include "room.h"
 #include <string.h>
 #include "pedometer.h"
-#include "sio.h"
+#include "siob.h"
 // #include <iterator>
 // #include <vector>
 room::room(const char id,const char *text,const char *insttext):id(id),goodpathid(-1),badpathid(-1),timeinms(-1){
@@ -44,18 +44,18 @@ void room::addbadpath(char badid){
     badpathid = badid;
 }
 char room::enter(){
-    sio::Println(roomtext);
-    sio::Println(instructiontext);
+    siob::Println(roomtext);
+    siob::Println(instructiontext);
     if(exittype == WAITONSTEPS){ //untimed pedometer
-        sio::Println("before make pedometer");
+        //siob::Println("before make pedometer");
         pedometer ped = pedometer();
-        sio::Println("before ped setup");
+        //siob::Println("before ped setup");
         imu newimu = ped.setup();
         if(exitquantity == -1){
             return -1;
         }
         ped.wait_for_steps(exitquantity);
-        sio::Println("after wait steps");
+        //siob::Println("after wait steps");
         return 0;
     }
     else if(exittype == TIMEDWAITONSTEPS){ //timed pedometer

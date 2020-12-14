@@ -15,8 +15,8 @@ void sio::arduino_clock_fix(){
    CPU_CCP = CCP_IOREG_gc;
   CLKCTRL_MCLKCTRLB = 0;      // Back to 16MHz
 
-  CPU_CCP = CCP_IOREG_gc;
-  CPUINT_CTRLA |= CPUINT_IVSEL_bm;
+//   CPU_CCP = CCP_IOREG_gc;
+//   CPUINT_CTRLA |= CPUINT_IVSEL_bm;
 }
 void sio::Print(const char *message){
     while( *message != 0) {
@@ -43,9 +43,9 @@ void sio::GetMsg(char * message, unsigned int buf_size){
         }
         message[counter] = USART3_RXDATAL;
 
-        // char buf2[16];
-        // sprintf(buf2, "%02d\n", message[counter]);
-        // SendSerialMsg(buf2);
+        char buf2[16];
+        sprintf(buf2, "%02d\n", message[counter]);
+        Print(buf2);
 
         counter++;
 
