@@ -11,8 +11,6 @@
 #include <stdio.h>
 #include "game.h"
 #include "siob.h"
-//#include "avr-stl/pnew.cpp"
-//#include "room.h"
 void * operator new(size_t size)
 {
   return malloc(size);

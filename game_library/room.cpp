@@ -13,8 +13,6 @@
 #include <string.h>
 #include "pedometer.h"
 #include "siob.h"
-// #include <iterator>
-// #include <vector>
 room::room(const char id,const char *text,const char *insttext):id(id),goodpathid(-1),badpathid(-1),timeinms(-1){
     strncpy(roomtext, text,256);
     strncpy(instructiontext,insttext,256);
@@ -47,15 +45,13 @@ char room::enter(){
     siob::Println(roomtext);
     siob::Println(instructiontext);
     if(exittype == WAITONSTEPS){ //untimed pedometer
-        //siob::Println("before make pedometer");
         pedometer ped = pedometer();
-        //siob::Println("before ped setup");
+    
         imu newimu = ped.setup();
         if(exitquantity == -1){
             return -1;
         }
         ped.wait_for_steps(exitquantity);
-        //siob::Println("after wait steps");
         return 0;
     }
     else if(exittype == TIMEDWAITONSTEPS){ //timed pedometer

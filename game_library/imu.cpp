@@ -7,7 +7,6 @@
 #include <avr/iom4809.h>
 #endif
 #include <stdio.h>
-#include <sio.h>
 #include "imu.h"
 #define SS_AVR_LOW      PORTB.OUTCLR = PIN3_bm;
 #define SS_AVR_HIGH     PORTB.OUTSET = PIN3_bm;
@@ -25,8 +24,6 @@ void imu::spisetup(){
     PORTC.DIRCLR = PIN1_bm; //MISO INPUT
     PORTC_DIRSET = PIN2_bm; //SCK OUTPUT
     PORTC_OUTSET = PIN2_bm; //SCK High
-    // PAGE 312
-    //SS?
     SPI0_CTRLA = SPI_MASTER_bm|SPI_PRESC_DIV16_gc; // set to master, prescaler to /16, 
     SPI0_CTRLB = SPI_MODE_3_gc|SPI_SSD_bm; //set SPI to mode 3
     SPI0_CTRLA |= SPI_ENABLE_bm;
@@ -60,10 +57,8 @@ void imu::SPI_write(unsigned char reg, unsigned char value){
         ;
     }
     char buffer[128];
-    // sprintf(buffer,"writereg 0x%02x\n",value);
     rx_data = SPI0_DATA;
     SPI0_DATA = value;
-    // SENDSERIALMSG(buffer);
     while(!(SPI0_INTFLAGS & SPI_IF_bm)){
         ;
     }

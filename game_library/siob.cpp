@@ -35,7 +35,9 @@ void siob::Print(const char *message){
     }
     USART0_TXDATAL = *message;
     message++;
+    
   }
+  _delay_ms(100);
 }
 void siob::Println(const char * message){
     Print(message);

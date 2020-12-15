@@ -8,8 +8,7 @@
 #endif
 #include <stdio.h>
 #include "game_library/game.h"
-//#include "game_library/siob.h"
-//#include "sio.h"
+
 
 game creategame(){
     // so far, the game engine has only two ways to exit a room. by achieving a certain amount of steps or achieving a cerntain amount of steps
@@ -21,7 +20,7 @@ game creategame(){
     ng.linkroomgood(pl,pn);
     pl = ng.addroom("You run through the door and notice a pile of jewels", "The jewels are 11 steps away", WAITONSTEPS, 11);
     ng.linkroomgood(pn,pl);
-    pl = ng.addroom("You were caught by the dragon and escorted out of the dugeon", "Your house is 11 steps away", WAITONSTEPS, 11);
+    pl = ng.addroom("You were caught by the dragon and escorted out of the dungeon", "Your house is 11 steps away", WAITONSTEPS, 11);
     ng.linkroombad(pn,pl);
     return ng;
 }

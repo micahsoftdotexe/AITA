@@ -15,8 +15,6 @@ void sio::arduino_clock_fix(){
    CPU_CCP = CCP_IOREG_gc;
   CLKCTRL_MCLKCTRLB = 0;      // Back to 16MHz
 
-//   CPU_CCP = CCP_IOREG_gc;
-//   CPUINT_CTRLA |= CPUINT_IVSEL_bm;
 }
 void sio::Print(const char *message){
     while( *message != 0) {

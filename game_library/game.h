@@ -7,8 +7,6 @@
 #include <avr/iom4809.h>
 #endif
 #include <stdio.h>
-// #include <iterator>
-// #include <vector>
 #include "room.h"
 
 class game{

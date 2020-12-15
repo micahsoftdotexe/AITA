@@ -8,15 +8,8 @@
 #include <avr/iom4809.h>
 #endif
 #include <stdio.h>
-//#include <imu.h>
 #include "siob.h"
 #include "pedometer.h"
-// #define SS_AVR_LOW      PORTB.OUTCLR = PIN3_bm;
-// #define SS_AVR_HIGH     PORTB.OUTSET = PIN3_bm;
-// #define BAUD_RATE 9600
-// #define BAUD_SETTING 1111
-// #define IMU_READ 0x80
-// #define IMU_WRITE 0x00
 pedometer::pedometer():stepstaken(0){
     instance = this;
 }
@@ -70,33 +63,29 @@ void pedometer::interrupt_handler(){
     else{
         stepstaken++;
     }
-    //sprintf(buffer,"steps taken: %d",stepstaken);
-    //sio::Println(buffer);
 }
 
 ISR(PORTC_PORT_vect){
     PORTC_INTFLAGS = 0xFF;
-    //siob::Println("[LOG] inside ISR");
+    
     pedometer::instance -> interrupt_handler();
-    //_delay_ms(10);
+    
 
 }
 
 char pedometer::wait_for_steps(char numsteps){
     en_it();
-    //siob::Println("after en_it");
+    
     resetsteps();
-    //siob::Println("after reset steps");
+    
     sei();
-    //char buffer[64];
-    //instance -> ISR();
+    
     while(stepstaken < numsteps){
-        //sprintf(buffer, "[LOG] inside of wait for steps: %d", stepstaken);
-        //sio::Println(buffer);
+        
         _delay_ms(10);
-        //siob::Println("inside while"); //gets to here
+        
     }
-    //siob::Println("after while");
+    
     cli();
     stepstaken = 0;
     de_it();
@@ -122,12 +111,12 @@ void mscounter(int numms){
     }
 }
 char pedometer::timedsteps(char numsteps,int numms){
-    //sio::Println("reset steps");
+    
     resetsteps();
-    //int intnums =  (int)numms;
+    
     _delay_ms(10);
     mscounter(numms);
-    //sio::Println("Made it after mscounter");
+    
     if(checksteps() >= numsteps){
         return 0; //zero good
     }

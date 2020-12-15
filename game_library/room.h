@@ -10,7 +10,6 @@
 
 #define WAITONSTEPS 0
 #define TIMEDWAITONSTEPS 1
-//#include <map>
 class room{
     private:
         char id;
